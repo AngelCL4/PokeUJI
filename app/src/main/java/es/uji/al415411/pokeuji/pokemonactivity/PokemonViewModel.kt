@@ -31,5 +31,6 @@ class PokemonViewModel: ViewModel() {
 
     private fun displayPokemon(pokemon: Pokemon) = view ?. apply {
         showPokemonData(pokemon)
+        showImage(pokemon)
     }
 }

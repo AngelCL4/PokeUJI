@@ -12,7 +12,7 @@ object PokemonRepository {
         withContext(Dispatchers.IO) {
             val pokemonResponse = api.getPokemon(id.lowercase())
             with(pokemonResponse) {
-                Result.success(Pokemon(id, name, weight, height))
+                Result.success(Pokemon(id, name, weight, height, species, sprites, abilities))
             }
         }
     } catch (e: Exception) {
