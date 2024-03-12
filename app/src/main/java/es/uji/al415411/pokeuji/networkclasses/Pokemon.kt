@@ -7,5 +7,6 @@ class Pokemon (
     val height: Int,
     val species: Species,
     val sprites: Sprites,
-    val abilities: List<Ability>
+    val abilities: List<Ability>,
+    val types: List<Type>
 )

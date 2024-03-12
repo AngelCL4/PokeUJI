@@ -6,7 +6,8 @@ class PokemonResponse (
     val height: Int,
     val species: Species,
     val sprites: Sprites,
-    val abilities: List<Ability>
+    val abilities: List<Ability>,
+    val types: List<Type>
 )
 
 class Species (
@@ -31,5 +32,13 @@ class Ability (
 )
 
 class AbilityInfo (
+    val name: String
+)
+
+class Type(
+    val type: TypeInfo
+)
+
+class TypeInfo(
     val name: String
 )
