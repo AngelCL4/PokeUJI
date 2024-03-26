@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".speciesactivity.SpeciesActivity">
+
+    <TextView
+        android:id="@+id/PokeNameS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text=""
+        android:gravity="center"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/SpeciesTextS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="(Species)"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@+id/PokeNameS"
+        app:layout_constraintStart_toStartOf="@+id/PokeNameS"
+        app:layout_constraintTop_toBottomOf="@+id/PokeNameS" />
+
+    <TextView
+        android:id="@+id/DescriptionS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="30dp"
+        android:text="Description:"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SpeciesTextS" />
+
+    <TextView
+        android:id="@+id/VersionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"
+        android:text="Version: "
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="@+id/DescriptionS"
+        app:layout_constraintTop_toBottomOf="@+id/DescriptionS" />
+
+    <TextView
+        android:id="@+id/DescriptionTextS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text=""
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="@+id/VersionText"
+        app:layout_constraintTop_toBottomOf="@+id/VersionText" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="232dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/VersionText"
+        app:layout_constraintStart_toEndOf="@+id/VersionText"
+        app:layout_constraintTop_toTopOf="@+id/VersionText" />
+
+    <TextView
+        android:id="@+id/VarietiesTextS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Varieties"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/DescriptionS"
+        app:layout_constraintTop_toBottomOf="@+id/DescriptionTextS" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="300dp"
+        android:layout_height="320dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="15dp"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/VarietiesTextS"
+        app:layout_constraintTop_toBottomOf="@+id/VarietiesTextS" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Evolution"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+</androidx.constraintlayout.widget.ConstraintLayout>

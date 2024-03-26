@@ -13,7 +13,9 @@ import androidx.fragment.app.DialogFragment
 import com.bumptech.glide.Glide
 import es.uji.al415411.pokeuji.networkclasses.Pokemon
 import android.app.FragmentManager
+import android.content.Intent
 import es.uji.al415411.pokeuji.networkclasses.Sprites
+import es.uji.al415411.pokeuji.speciesactivity.SpeciesActivity
 
 
 class MainActivity : AppCompatActivity(), PokemonInterface {
@@ -22,6 +24,7 @@ class MainActivity : AppCompatActivity(), PokemonInterface {
     var listab: MutableList<String> = mutableListOf()
     var listat: MutableList<String> = mutableListOf()
     var listaSprites: Array<String?> = arrayOf()
+    var spec: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -43,6 +46,14 @@ class MainActivity : AppCompatActivity(), PokemonInterface {
             MostrarDialogoSprites(listaSprites)
         }
 
+        binding.SpeciesData.setOnClickListener{
+            listab.clear()
+            listat.clear()
+            val intent = Intent(this,SpeciesActivity::class.java)
+                intent.putExtra( "Specie", spec)
+                startActivity(intent)
+        }
+
     }
 
     override fun onResume(){
@@ -62,6 +73,7 @@ class MainActivity : AppCompatActivity(), PokemonInterface {
                 WeightData.text = (it.weight / 10f).toString()+" kg"
                 HeightData.text = (it.height / 10f).toString()+" m"
                 SpeciesData.text = it.species.name
+                spec = it.species.name
                 var i = 0
                 var j = 0
                 while(i < it.abilities.size){
