@@ -33,4 +33,8 @@ class PokemonViewModel: ViewModel() {
         showPokemonData(pokemon)
         showImage(pokemon)
     }
+
+    fun speciesSwitch() {
+        view?.showSpeciesView(pokemon!!.species)
+    }
 }

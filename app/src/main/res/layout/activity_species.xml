@@ -59,8 +59,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text=""
-        android:gravity="center"
-        app:layout_constraintStart_toStartOf="@+id/VersionText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/VarietiesTextS"
         app:layout_constraintTop_toBottomOf="@+id/VersionText" />
 
     <Spinner

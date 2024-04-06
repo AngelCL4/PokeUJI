@@ -8,4 +8,7 @@ interface PokeApi {
     @Headers("Accept: application/json")
     @GET("pokemon/{id}")
     suspend fun getPokemon(@Path("id") name: String): PokemonResponse
+
+    @GET("pokemon-species/{id}")
+    suspend fun getSpecies(@Path("id") name: String): SpeciesResponse
 }

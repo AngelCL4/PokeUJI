@@ -11,20 +11,47 @@ class SpeciesViewModel: ViewModel() {
     fun onBeginning(id: String) {
         viewModelScope.launch(Dispatchers.Main) {
             PokemonRepository.getSpecies(id)
-                .onSuccess {
-                    specie = it
-                    displaySpecie(it)
-                }
+                .onSuccess { specie = it }
                 .onFailure { view?.showSearchError(it) }
         }
     }
 
     var view: SpeciesInterface? = null
+        set(value) {
+            field = value
+            if (value != null) {
+                specie?.let {displaySpecie(it)}
+            }
+        }
 
     var specie: Specie? = null
+        set(value) {
+            field = value
+            if(value != null){
+                displaySpecie(value)
 
-    private fun displaySpecie(specie: Specie) = view ?. apply {
-        showVarietiesData(specie)
+            }
+        }
+
+    var numVersion: Int = 2
+        set
+
+    private fun displaySpecie(specie: Specie?) = view ?. apply {
+        if(specie != null)
+        {
+            view?.showSpeciesInfo(specie, numVersion)
+        }
+    }
+
+
+
+    fun changeVersion(position: Int) {
+        numVersion = position
+        val descriptions = specie?.flavourTextEntries
+        if(descriptions != null)
+        {
+            view?.showVersion(descriptions[numVersion])
+        }
     }
 
 }

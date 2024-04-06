@@ -21,9 +21,21 @@ object PokemonRepository {
 
     suspend fun getSpecies(id: String) = try {
         withContext(Dispatchers.IO) {
-            val speciesResponse = api2.getSpecies(id.lowercase())
+            val speciesResponse = api.getSpecies(id.lowercase())
+            val version_list = ArrayList<String>()
+            val flavor_text_list = ArrayList<String>()
+            for (version in speciesResponse.flavor_text_entries) {
+                if(version.language.name == "en") {
+                    version_list.add(version.version.name)
+                    flavor_text_list.add(version.flavor_text)
+                }
+            }
+            val variety_list = ArrayList<String>()
+            for(varieties in speciesResponse.varieties) {
+                variety_list.add(varieties.pokemon.name)
+            }
             with(speciesResponse) {
-                Result.success(Specie(name, varieties))
+                Result.success(Specie(flavor_text_list, name, version_list, variety_list, varieties))
             }
         }
     } catch (e: Exception) {
@@ -40,13 +52,4 @@ object PokemonRepository {
             .create(PokeApi::class.java)
     }
 
-    private val api2: PokeApiV2
-    init {
-        val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
-        api2 = Retrofit.Builder()
-            .baseUrl("https://pokeapi.co/api/v2/")
-            .addConverterFactory(MoshiConverterFactory.create(moshi))
-            .build()
-            .create(PokeApiV2::class.java)
-    }
 }

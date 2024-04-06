@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import es.uji.al415411.pokeuji.networkclasses.Pokemon
 import android.app.FragmentManager
 import android.content.Intent
+import es.uji.al415411.pokeuji.networkclasses.Info
 import es.uji.al415411.pokeuji.networkclasses.Sprites
 import es.uji.al415411.pokeuji.speciesactivity.SpeciesActivity
 
@@ -49,9 +50,7 @@ class MainActivity : AppCompatActivity(), PokemonInterface {
         binding.SpeciesData.setOnClickListener{
             listab.clear()
             listat.clear()
-            val intent = Intent(this,SpeciesActivity::class.java)
-                intent.putExtra( "Specie", spec)
-                startActivity(intent)
+            viewModel.speciesSwitch()
         }
 
     }
@@ -187,5 +186,12 @@ class MainActivity : AppCompatActivity(), PokemonInterface {
             }
         }
     }
+
+    override fun showSpeciesView(species: Info) {
+        val intent = Intent(this,SpeciesActivity::class.java)
+        intent.putExtra( SpeciesActivity.SPECIES_ID, species.name)
+        startActivity(intent)
+    }
+
 }
 
