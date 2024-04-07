@@ -25,8 +25,7 @@ class Sprites (
     val front_female: String? = null,
     val front_shiny: String? = null,
     val front_shiny_female: String? = null,
-
-    )
+)
 
 class Ability (
     val ability: AbilityInfo

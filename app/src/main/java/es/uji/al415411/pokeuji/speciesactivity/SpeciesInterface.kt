@@ -6,6 +6,7 @@ interface SpeciesInterface {
 
     fun showSpeciesInfo(pokemonS: Specie, numVersion: Int)
     fun showVersion(description: String)
-    fun showVarietiesData(specie: Specie)
+    fun showVarietiesData()
     fun showSearchError(error: Throwable)
+    fun setListener(pokemonS: Specie)
 }

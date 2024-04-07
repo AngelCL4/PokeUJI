@@ -31,6 +31,11 @@ class MainActivity : AppCompatActivity(), PokemonInterface {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val bundle = intent.getStringExtra(MainActivity.POKEMON_VAR)
+        if (bundle != null) {
+            viewModel.onPokemonSearchRequested(bundle)
+        }
+
         binding.SearchButton.setOnClickListener {
             listab.clear()
             listat.clear()
@@ -185,6 +190,10 @@ class MainActivity : AppCompatActivity(), PokemonInterface {
                     .into(imageView)
             }
         }
+    }
+
+    companion object{
+        const val POKEMON_VAR = "POKEMON_VAR"
     }
 
     override fun showSpeciesView(species: Info) {

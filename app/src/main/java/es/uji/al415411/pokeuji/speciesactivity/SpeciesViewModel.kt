@@ -11,7 +11,10 @@ class SpeciesViewModel: ViewModel() {
     fun onBeginning(id: String) {
         viewModelScope.launch(Dispatchers.Main) {
             PokemonRepository.getSpecies(id)
-                .onSuccess { specie = it }
+                .onSuccess {
+                    specie = it
+                    view?.setListener(it)
+                }
                 .onFailure { view?.showSearchError(it) }
         }
     }

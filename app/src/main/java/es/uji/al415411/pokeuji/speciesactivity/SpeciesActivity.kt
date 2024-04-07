@@ -17,8 +17,11 @@ import android.content.Intent
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
 import es.uji.al415411.pokeuji.networkclasses.Specie
 import es.uji.al415411.pokeuji.networkclasses.Sprites
+import es.uji.al415411.pokeuji.networkclasses.Variety
+import es.uji.al415411.pokeuji.pokemonactivity.MainActivity
 import es.uji.al415411.pokeuji.pokemonactivity.PokemonViewModel
 import es.uji.al415411.pokeuji.speciesactivity.SpeciesActivity
 
@@ -38,6 +41,7 @@ class SpeciesActivity : AppCompatActivity(), SpeciesInterface {
                 PokeNameS.text = bundle
             }
         }
+
 
     }
 
@@ -69,16 +73,16 @@ class SpeciesActivity : AppCompatActivity(), SpeciesInterface {
             with(binding) {
                 spinner.adapter=adapter
             }
+
+            binding.recyclerView.let {
+                it.adapter = RecyclerAdapter(pokemonS.varieties)
+                it.layoutManager = LinearLayoutManager(this)
+            }
         }
     }
 
-    override fun showVarietiesData(specie: Specie) {
-        println("Hello World")
-        specie.let {
-            with(binding){
-                //DescriptionTextS.text = it.varieties[0].variety.name
-            }
-        }
+    override fun showVarietiesData() {
+
     }
     override fun showSearchError(error: Throwable) {
         Toast.makeText(this, error.message ?: "Unknown error", Toast.LENGTH_LONG).show()
@@ -91,5 +95,18 @@ class SpeciesActivity : AppCompatActivity(), SpeciesInterface {
     override fun onResume() {
         super.onResume()
         viewModel.view = this
+    }
+
+    override fun setListener(pokemonS: Specie) {
+        val recycler = RecyclerAdapter(pokemonS.varieties)
+        binding?.recyclerView?.adapter = recycler
+        recycler.setOnClickListener(object : RecyclerAdapter.OnClickListener {
+            override fun onClick(pos: Int, model: Variety) {
+                val intent = Intent(this@SpeciesActivity, MainActivity::class.java)
+                intent.putExtra(MainActivity.POKEMON_VAR, model.pokemon.name)
+                startActivity(intent)
+            }
+        }
+        )
     }
 }
