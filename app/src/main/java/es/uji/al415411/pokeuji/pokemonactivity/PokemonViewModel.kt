@@ -37,4 +37,12 @@ class PokemonViewModel: ViewModel() {
     fun speciesSwitch() {
         view?.showSpeciesView(pokemon!!.species)
     }
+
+    fun onAbilityDialog() {
+        view?.showAbilities()
+    }
+
+    fun onTypeDialog(){
+        view?.showTypes()
+    }
 }

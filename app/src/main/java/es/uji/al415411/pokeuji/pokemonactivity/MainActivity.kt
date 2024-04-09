@@ -22,8 +22,7 @@ import es.uji.al415411.pokeuji.speciesactivity.SpeciesActivity
 class MainActivity : AppCompatActivity(), PokemonInterface {
     lateinit var binding: ActivityMainBinding
     val viewModel: PokemonViewModel by viewModels()
-    var listab: MutableList<String> = mutableListOf()
-    var listat: MutableList<String> = mutableListOf()
+
     var listaSprites: Array<String?> = arrayOf()
     var spec: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,24 +36,20 @@ class MainActivity : AppCompatActivity(), PokemonInterface {
         }
 
         binding.SearchButton.setOnClickListener {
-            listab.clear()
-            listat.clear()
             viewModel.onPokemonSearchRequested(binding.SearchBar.text.toString())
         }
 
         binding.AbilityButton.setOnClickListener {
-            MostrarDialogoHabilidades(listab)
+            viewModel.onAbilityDialog()
         }
         binding.TypeButton.setOnClickListener {
-            MostrarDialogoTypes(listat)
+            viewModel.onTypeDialog()
         }
         binding.imageView.setOnClickListener{
             MostrarDialogoSprites(listaSprites)
         }
 
         binding.SpeciesData.setOnClickListener{
-            listab.clear()
-            listat.clear()
             viewModel.speciesSwitch()
         }
 
@@ -78,17 +73,10 @@ class MainActivity : AppCompatActivity(), PokemonInterface {
                 HeightData.text = (it.height / 10f).toString()+" m"
                 SpeciesData.text = it.species.name
                 spec = it.species.name
-                var i = 0
-                var j = 0
-                while(i < it.abilities.size){
-                    listab.add(it.abilities[i].ability.name)
-                    i++
-                }
-                while(j < it.types.size){
-                    listat.add(it.types[j].type.name)
-                    j++
-                }
-                listaSprites = arrayOf(it.sprites.back_default,it.sprites.back_female,it.sprites.back_shiny,it.sprites.back_shiny_female,it.sprites.front_default,it.sprites.front_female,it.sprites.front_shiny,it.sprites.front_shiny_female)
+                listaSprites = arrayOf(it.sprites.back_default,it.sprites.back_female,it.sprites.back_shiny,it.sprites.back_shiny_female,it.sprites.front_default,it.sprites.front_female,it.sprites.front_shiny,it.sprites.front_shiny_female,
+                    it.sprites.other.home.front_default, it.sprites.other.home.front_female, it.sprites.other.home.front_shiny, it.sprites.other.home.front_shiny_female,
+                    it.sprites.other.officialartwork.front_default, it.sprites.other.officialartwork.front_shiny,
+                    it.sprites.other.showdown.back_default, it.sprites.other.showdown.back_female, it.sprites.other.showdown.back_shiny, it.sprites.other.showdown.back_shiny_female, it.sprites.other.showdown.front_default, it.sprites.other.showdown.front_female, it.sprites.other.showdown.front_shiny, it.sprites.other.showdown.front_shiny_female)
             }
         }
     }
@@ -107,50 +95,22 @@ class MainActivity : AppCompatActivity(), PokemonInterface {
         }
     }
 
-    fun MostrarDialogoHabilidades(habilidad: List<String>) {
-        val alertaDialogo = AlertDialog.Builder(this)
-        alertaDialogo.apply{
-            setTitle("Habilidades")
-            var i = 0
-            var habilidades: String = ""
-            while(i < habilidad.size){
-                if (i == habilidad.size-1){
-                    habilidades += habilidad[i]
-                }
-                else{
-                    habilidades += habilidad[i] + "\n\n"
-                }
-                ++i
-            }
-            setMessage(habilidades)
-            setPositiveButton(android.R.string.ok, null)
-        }.create().show()
+    override fun showAbilities() {
+        DialogoHabilidades().show(supportFragmentManager, "Habilidades")
     }
-    fun MostrarDialogoTypes(tipo: List<String>) {
-        val alertaDialogo = AlertDialog.Builder(this)
-        alertaDialogo.apply{
-            setTitle("Tipos")
-            var i = 0
-            var tipos: String = ""
-            while(i < tipo.size){
-                if (i == tipo.size-1){
-                    tipos += tipo[i]
-                }
-                else{
-                    tipos += tipo[i] + "\n\n"
-                }
-                ++i
-            }
-            setMessage(tipos)
-            setPositiveButton(android.R.string.ok, null)
-        }.create().show()
+
+    override fun showTypes() {
+        DialogoTipos().show(supportFragmentManager, "Tipos")
     }
 
     fun MostrarDialogoSprites(imagenes: Array<String?>){
         val alertaDialogo = AlertDialog.Builder(this)
         alertaDialogo.apply{
             setTitle("Select a sprite")
-            setItems(arrayOf("back_default", "back_female","back_shiny","back_shiny_female","front_default","front_female","front_shiny","front_shiny_female")){ _, pos ->
+            setItems(arrayOf("back default", "back female","back shiny","back shiny female","front default","front female","front shiny","front shiny female",
+                "home: front default", "home: front female", "home: front shiny", "home: front shiny female",
+                "official-artwork: front default", "official-artwork: front shiny",
+                "showdown: back default", "showdown: back female", "showdown: back shiny", "showdown: back shiny female", "showdown: front default", "showdown: front female", "showdown: front shiny", "showdown: front shiny female")){ _, pos ->
                 when(pos){
                     0 ->{
                         CambiaSprite(imagenes[0])
@@ -175,6 +135,48 @@ class MainActivity : AppCompatActivity(), PokemonInterface {
                     }
                     7 ->{
                         CambiaSprite(imagenes[7])
+                    }
+                    8 ->{
+                        CambiaSprite(imagenes[8])
+                    }
+                    9 ->{
+                        CambiaSprite(imagenes[9])
+                    }
+                    10 ->{
+                        CambiaSprite(imagenes[10])
+                    }
+                    11 ->{
+                        CambiaSprite(imagenes[11])
+                    }
+                    12 ->{
+                        CambiaSprite(imagenes[12])
+                    }
+                    13 ->{
+                        CambiaSprite(imagenes[13])
+                    }
+                    14 ->{
+                        CambiaSprite(imagenes[14])
+                    }
+                    15 ->{
+                        CambiaSprite(imagenes[15])
+                    }
+                    16 ->{
+                        CambiaSprite(imagenes[16])
+                    }
+                    17 ->{
+                        CambiaSprite(imagenes[17])
+                    }
+                    18 ->{
+                        CambiaSprite(imagenes[18])
+                    }
+                    19 ->{
+                        CambiaSprite(imagenes[19])
+                    }
+                    20 ->{
+                        CambiaSprite(imagenes[20])
+                    }
+                    21 ->{
+                        CambiaSprite(imagenes[21])
                     }
                 }
             }

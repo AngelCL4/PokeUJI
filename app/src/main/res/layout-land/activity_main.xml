@@ -22,9 +22,9 @@
         android:id="@+id/imageView"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="10dp"
         android:src="@android:drawable/ic_dialog_alert"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/PokeName" />
 
@@ -32,7 +32,7 @@
         android:id="@+id/PokeName"
         android:layout_width="180dp"
         android:layout_height="30dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:text=""
         android:textSize="20sp"
@@ -44,10 +44,11 @@
         android:id="@+id/HeightText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="50dp"
         android:text="Height:"
-        app:layout_constraintStart_toStartOf="@+id/SearchBar"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintStart_toEndOf="@+id/PokeName"
+        app:layout_constraintTop_toTopOf="@+id/PokeName" />
 
     <TextView
         android:id="@+id/HeightData"
@@ -96,26 +97,21 @@
         android:id="@+id/AbilityButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
         android:text="Show abilities"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SpeciesText" />
+        app:layout_constraintEnd_toEndOf="@+id/SearchButton"
+        app:layout_constraintTop_toTopOf="@+id/HeightText" />
 
     <Button
         android:id="@+id/TypeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="45dp"
-        android:layout_marginEnd="40dp"
         android:text="Show types"
-        app:layout_constraintBottom_toBottomOf="@+id/AbilityButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/AbilityButton" />
+        app:layout_constraintEnd_toEndOf="@+id/SearchButton"
+        app:layout_constraintTop_toTopOf="@+id/SpeciesText" />
 
     <EditText
         android:id="@+id/SearchBar"
-        android:layout_width="241dp"
+        android:layout_width="500dp"
         android:layout_height="52dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"

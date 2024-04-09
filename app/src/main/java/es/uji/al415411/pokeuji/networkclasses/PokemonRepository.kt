@@ -11,8 +11,17 @@ object PokemonRepository {
     suspend fun getPokemon(id: String) = try {
         withContext(Dispatchers.IO) {
             val pokemonResponse = api.getPokemon(id.lowercase())
+            val abilities_list = ArrayList<String>()
+            for(ability in pokemonResponse.abilities) {
+                abilities_list.add(ability.ability.name)
+            }
+
+            val types_list = ArrayList<String>()
+            for(type in pokemonResponse.types) {
+                types_list.add(type.type.name)
+            }
             with(pokemonResponse) {
-                Result.success(Pokemon(id, name, weight, height, species, sprites, abilities, types))
+                Result.success(Pokemon(id, name, weight, height, species, sprites, abilities_list, types_list))
             }
         }
     } catch (e: Exception) {
