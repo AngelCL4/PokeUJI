@@ -23,6 +23,7 @@ object PokemonRepository {
             with(pokemonResponse) {
                 Result.success(Pokemon(id, name, weight, height, species, sprites, abilities_list, types_list))
             }
+
         }
     } catch (e: Exception) {
         Result.failure(e)
