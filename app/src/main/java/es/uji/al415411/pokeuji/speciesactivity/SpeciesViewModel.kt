@@ -46,7 +46,30 @@ class SpeciesViewModel: ViewModel() {
         }
     }
 
+    fun evolutionSwitch() {
+        val url = specie?.evolution_chain!!.url
+        var digito = false
+        var evo_chain: String = ""
+        var i = 0
+        while (i < url.length){
+            println(evo_chain)
+            if (digito){
+                evo_chain += url[i]
+            }
+            if ((url[i] == '/') && (i+1 != url.length)){
+                if (url[i+1].isDigit()){
+                    digito = true
+                }
 
+            }
+            else if ((url[i].isDigit()) && (url[i+1] == '/')){
+                digito = false
+            }
+            i += 1
+        }
+        println(evo_chain)
+        view?.showEvolutionView(evo_chain)
+    }
 
     fun changeVersion(position: Int) {
         numVersion = position

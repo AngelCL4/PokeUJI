@@ -5,7 +5,8 @@ class Specie (
     val name: String,
     val version: List<String>,
     val variety: List<String>,
-    val varieties: List<Variety>
+    val varieties: List<Variety>,
+    val evolution_chain: ChainURL
 )
 
 class FlavourTextEntry (
@@ -16,4 +17,8 @@ class FlavourTextEntry (
 class Variety (
     val pokemon: Info,
     val is_default: Boolean
+)
+
+class ChainURL (
+    val url: String
 )

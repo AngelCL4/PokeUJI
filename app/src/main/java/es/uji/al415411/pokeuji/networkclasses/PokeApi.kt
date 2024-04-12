@@ -11,4 +11,7 @@ interface PokeApi {
 
     @GET("pokemon-species/{id}")
     suspend fun getSpecies(@Path("id") name: String): SpeciesResponse
+
+    @GET("evolution-chain/{id}")
+    suspend fun getEvolution(@Path("id") name: String): EvolutionResponse
 }

@@ -18,6 +18,8 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
+import es.uji.al415411.pokeuji.evolutionactivity.EvolutionActivity
+import es.uji.al415411.pokeuji.networkclasses.Info
 import es.uji.al415411.pokeuji.networkclasses.Specie
 import es.uji.al415411.pokeuji.networkclasses.Sprites
 import es.uji.al415411.pokeuji.networkclasses.Variety
@@ -40,6 +42,10 @@ class SpeciesActivity : AppCompatActivity(), SpeciesInterface {
             with(binding) {
                 PokeNameS.text = bundle
             }
+        }
+
+        binding.button.setOnClickListener{
+            viewModel.evolutionSwitch()
         }
 
 
@@ -108,5 +114,11 @@ class SpeciesActivity : AppCompatActivity(), SpeciesInterface {
             }
         }
         )
+    }
+
+    override fun showEvolutionView(species: String) {
+        val intent = Intent(this,EvolutionActivity::class.java)
+        intent.putExtra(SPECIES_ID, species)
+        startActivity(intent)
     }
 }

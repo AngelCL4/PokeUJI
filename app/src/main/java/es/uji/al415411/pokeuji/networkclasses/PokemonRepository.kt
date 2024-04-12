@@ -45,8 +45,20 @@ object PokemonRepository {
                 variety_list.add(varieties.pokemon.name)
             }
             with(speciesResponse) {
-                Result.success(Specie(flavor_text_list, name, version_list, variety_list, varieties))
+                Result.success(Specie(flavor_text_list, name, version_list, variety_list, varieties, evolution_chain))
             }
+        }
+    } catch (e: Exception) {
+        Result.failure(e)
+    }
+
+    suspend fun getEvolution(id: String) = try {
+        withContext(Dispatchers.IO) {
+            val evolutionResponse = api.getEvolution(id.lowercase())
+            with(evolutionResponse) {
+                Result.success(Evolution(chain))
+            }
+
         }
     } catch (e: Exception) {
         Result.failure(e)
