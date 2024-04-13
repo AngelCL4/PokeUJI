@@ -52,7 +52,6 @@ class SpeciesViewModel: ViewModel() {
         var evo_chain: String = ""
         var i = 0
         while (i < url.length){
-            println(evo_chain)
             if (digito){
                 evo_chain += url[i]
             }
@@ -67,7 +66,6 @@ class SpeciesViewModel: ViewModel() {
             }
             i += 1
         }
-        println(evo_chain)
         view?.showEvolutionView(evo_chain)
     }
 

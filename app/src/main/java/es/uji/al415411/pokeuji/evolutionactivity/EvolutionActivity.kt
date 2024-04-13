@@ -1,13 +1,17 @@
 package es.uji.al415411.pokeuji.evolutionactivity
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import es.uji.al415411.pokeuji.databinding.ActivityEvolutionBinding
-import es.uji.al415411.pokeuji.databinding.ActivitySpeciesBinding
+import es.uji.al415411.pokeuji.networkclasses.Chain
 import es.uji.al415411.pokeuji.networkclasses.Evolution
+import es.uji.al415411.pokeuji.pokemonactivity.MainActivity
 import es.uji.al415411.pokeuji.speciesactivity.SpeciesActivity
+
 
 
 class EvolutionActivity : AppCompatActivity(), EvolutionInterface {
@@ -24,17 +28,38 @@ class EvolutionActivity : AppCompatActivity(), EvolutionInterface {
             viewModel.onBeginning(bundle)
         }
 
+
+
     }
 
     override fun showSearchError(error: Throwable) {
         Toast.makeText(this, error.message ?: "Unknown error", Toast.LENGTH_LONG).show()
     }
 
-    override fun cambiaTitulo(evolution: Evolution) {
-        evolution.let{
-            with (binding) {
-                textView.text = it.chain.species.name
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.view = this
+    }
+
+    override fun showEvolution(evol: Evolution){
+        binding.recyclerView.let {
+            it.adapter = EvolutionAdapter(evol.chain.evolves_to)
+            it.layoutManager = LinearLayoutManager(this)
+        }
+
+    }
+
+    override fun setListener(pokemonS: Evolution) {
+        val recycler = EvolutionAdapter(pokemonS.chain.evolves_to)
+        binding?.recyclerView?.adapter = recycler
+        recycler.setOnClickListener(object : EvolutionAdapter.OnClickListener {
+            override fun onClick(pos: Int, model: Chain?) {
+                val intent = Intent(this@EvolutionActivity, MainActivity::class.java)
+                intent.putExtra(MainActivity.POKEMON_VAR, model!!.species.name)
+                startActivity(intent)
             }
         }
+        )
     }
 }

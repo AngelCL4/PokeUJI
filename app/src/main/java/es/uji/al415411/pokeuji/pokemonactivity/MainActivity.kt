@@ -14,6 +14,10 @@ import com.bumptech.glide.Glide
 import es.uji.al415411.pokeuji.networkclasses.Pokemon
 import android.app.FragmentManager
 import android.content.Intent
+import android.graphics.Color
+import android.text.Editable
+import android.text.TextWatcher
+import android.widget.EditText
 import es.uji.al415411.pokeuji.networkclasses.Info
 import es.uji.al415411.pokeuji.networkclasses.Sprites
 import es.uji.al415411.pokeuji.speciesactivity.SpeciesActivity
@@ -36,6 +40,7 @@ class MainActivity : AppCompatActivity(), PokemonInterface {
         }
 
         binding.SearchButton.setOnClickListener {
+            changeSearchColor(binding.SearchBar)
             viewModel.onPokemonSearchRequested(binding.SearchBar.text.toString())
         }
 
@@ -81,7 +86,25 @@ class MainActivity : AppCompatActivity(), PokemonInterface {
         }
     }
     override fun showSearchError(error: Throwable) {
+        binding.SearchBar.setTextColor(Color.RED)
         Toast.makeText(this, error.message ?: "Unknown error", Toast.LENGTH_LONG).show()
+    }
+
+    fun changeSearchColor(editText: EditText){
+        editText.addTextChangedListener(object: TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                val color = Color.BLACK
+                editText.setTextColor(color)
+            }
+        })
     }
 
     override fun showImage(pokemon: Pokemon) {

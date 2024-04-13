@@ -1,31 +1,19 @@
 package es.uji.al415411.pokeuji.speciesactivity
 
-import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageView
-import es.uji.al415411.pokeuji.R
 import es.uji.al415411.pokeuji.databinding.ActivitySpeciesBinding
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.DialogFragment
-import com.bumptech.glide.Glide
-import es.uji.al415411.pokeuji.networkclasses.Pokemon
-import android.app.FragmentManager
 import android.content.Intent
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import es.uji.al415411.pokeuji.evolutionactivity.EvolutionActivity
-import es.uji.al415411.pokeuji.networkclasses.Info
 import es.uji.al415411.pokeuji.networkclasses.Specie
-import es.uji.al415411.pokeuji.networkclasses.Sprites
 import es.uji.al415411.pokeuji.networkclasses.Variety
 import es.uji.al415411.pokeuji.pokemonactivity.MainActivity
-import es.uji.al415411.pokeuji.pokemonactivity.PokemonViewModel
-import es.uji.al415411.pokeuji.speciesactivity.SpeciesActivity
 
 class SpeciesActivity : AppCompatActivity(), SpeciesInterface {
     lateinit var binding: ActivitySpeciesBinding

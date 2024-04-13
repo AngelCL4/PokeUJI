@@ -14,7 +14,6 @@ class EvolutionViewModel: ViewModel() {
             PokemonRepository.getEvolution(id)
                 .onSuccess {
                     evolution = it
-                    view?.cambiaTitulo(it)
                 }
                 .onFailure { view?.showSearchError(it) }
 

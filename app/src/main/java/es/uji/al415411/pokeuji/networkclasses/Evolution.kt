@@ -5,5 +5,7 @@ class Evolution (
 )
 
 class Chain (
-    val species: Info
+    val species: Info,
+    val evolves_to: List<Chain?>
 )
+
