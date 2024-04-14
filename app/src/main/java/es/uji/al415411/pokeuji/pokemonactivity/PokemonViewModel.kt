@@ -1,6 +1,6 @@
 package es.uji.al415411.pokeuji.pokemonactivity
 
-import es.uji.al415411.pokeuji.networkclasses.Pokemon
+import es.uji.al415411.pokeuji.models.Pokemon
 import es.uji.al415411.pokeuji.networkclasses.PokemonRepository
 import kotlinx.coroutines.Dispatchers
 import androidx.lifecycle.ViewModel

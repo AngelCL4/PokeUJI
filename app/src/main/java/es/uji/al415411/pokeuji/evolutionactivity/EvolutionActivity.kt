@@ -7,8 +7,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import es.uji.al415411.pokeuji.databinding.ActivityEvolutionBinding
-import es.uji.al415411.pokeuji.networkclasses.Chain
-import es.uji.al415411.pokeuji.networkclasses.Evolution
+import es.uji.al415411.pokeuji.models.Chain
+import es.uji.al415411.pokeuji.models.Evolution
 import es.uji.al415411.pokeuji.pokemonactivity.MainActivity
 import es.uji.al415411.pokeuji.speciesactivity.SpeciesActivity
 
@@ -28,6 +28,12 @@ class EvolutionActivity : AppCompatActivity(), EvolutionInterface {
             viewModel.onBeginning(bundle)
         }
 
+        with(binding){
+            primeraEvo.setOnClickListener {
+                viewModel.volverEvo()
+            }
+        }
+
 
 
     }
@@ -43,11 +49,17 @@ class EvolutionActivity : AppCompatActivity(), EvolutionInterface {
     }
 
     override fun showEvolution(evol: Evolution){
+        binding.primeraEvo.text = evol.chain.species.name
         binding.recyclerView.let {
             it.adapter = EvolutionAdapter(evol.chain.evolves_to)
             it.layoutManager = LinearLayoutManager(this)
         }
+    }
 
+    override fun firstListener(name: String){
+        val intent = Intent(this@EvolutionActivity, MainActivity::class.java)
+        intent.putExtra(MainActivity.POKEMON_VAR, name)
+        startActivity(intent)
     }
 
     override fun setListener(pokemonS: Evolution) {

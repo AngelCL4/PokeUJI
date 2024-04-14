@@ -1,5 +1,8 @@
 package es.uji.al415411.pokeuji.networkclasses
 
+import es.uji.al415411.pokeuji.models.EvolutionResponse
+import es.uji.al415411.pokeuji.models.PokemonResponse
+import es.uji.al415411.pokeuji.models.SpeciesResponse
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Path

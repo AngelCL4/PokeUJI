@@ -1,7 +1,6 @@
 package es.uji.al415411.pokeuji.evolutionactivity
 
-import es.uji.al415411.pokeuji.networkclasses.Evolution
-import es.uji.al415411.pokeuji.networkclasses.Specie
+import es.uji.al415411.pokeuji.models.Evolution
 
 interface EvolutionInterface {
 
@@ -10,4 +9,6 @@ interface EvolutionInterface {
     fun setListener(pokemonS: Evolution)
 
     fun showEvolution(evol: Evolution)
+
+    fun firstListener(name: String)
 }

@@ -1,7 +1,6 @@
 package es.uji.al415411.pokeuji.speciesactivity
 
-import es.uji.al415411.pokeuji.networkclasses.Info
-import es.uji.al415411.pokeuji.networkclasses.Specie
+import es.uji.al415411.pokeuji.models.Specie
 
 interface SpeciesInterface {
 

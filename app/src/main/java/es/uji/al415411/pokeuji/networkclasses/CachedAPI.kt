@@ -1,5 +1,7 @@
 package es.uji.al415411.pokeuji.networkclasses
 
+import es.uji.al415411.pokeuji.models.PokemonResponse
+import es.uji.al415411.pokeuji.models.SpeciesResponse
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 

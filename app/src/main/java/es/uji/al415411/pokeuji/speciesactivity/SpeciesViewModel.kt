@@ -1,11 +1,10 @@
 package es.uji.al415411.pokeuji.speciesactivity
 
-import es.uji.al415411.pokeuji.networkclasses.Specie
+import es.uji.al415411.pokeuji.models.Specie
 import es.uji.al415411.pokeuji.networkclasses.PokemonRepository
 import kotlinx.coroutines.Dispatchers
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import es.uji.al415411.pokeuji.networkclasses.Pokemon
 import kotlinx.coroutines.launch
 class SpeciesViewModel: ViewModel() {
     fun onBeginning(id: String) {

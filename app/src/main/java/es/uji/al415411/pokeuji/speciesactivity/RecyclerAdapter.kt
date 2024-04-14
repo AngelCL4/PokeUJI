@@ -1,6 +1,6 @@
 package es.uji.al415411.pokeuji.speciesactivity
 
-import es.uji.al415411.pokeuji.networkclasses.Variety
+import es.uji.al415411.pokeuji.models.Variety
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

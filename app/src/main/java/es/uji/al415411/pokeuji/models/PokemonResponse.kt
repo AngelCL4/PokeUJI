@@ -1,4 +1,4 @@
-package es.uji.al415411.pokeuji.networkclasses
+package es.uji.al415411.pokeuji.models
 
 class PokemonResponse (
     val name: String,

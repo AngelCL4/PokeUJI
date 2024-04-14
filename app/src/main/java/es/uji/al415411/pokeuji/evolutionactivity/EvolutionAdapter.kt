@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import es.uji.al415411.pokeuji.R
-import es.uji.al415411.pokeuji.networkclasses.Chain
+import es.uji.al415411.pokeuji.models.Chain
 
 class EvolutionAdapter(val evolutions: List<Chain?>): RecyclerView.Adapter<EvolutionAdapter.ViewHolder>() {
     private var onClickListener: OnClickListener? = null
-    class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val name: TextView = view.findViewById(R.id.evolutionName)
     }
 
@@ -21,7 +21,15 @@ class EvolutionAdapter(val evolutions: List<Chain?>): RecyclerView.Adapter<Evolu
 
     override fun onBindViewHolder(holder: ViewHolder, pos: Int) {
         with(evolutions[pos]) {
-            holder.name.text = this!!.species.name
+            var tree : String = ""
+            if (pos+1 == evolutions.size){
+                tree = "└─ " + this!!.species.name
+                holder.name.text = tree
+            }
+            else {
+                tree = "├─ " + this!!.species.name
+                holder.name.text = tree
+            }
             holder.itemView.setOnClickListener{
                 if (onClickListener != null){
                     onClickListener!!.onClick(pos, evolutions[pos])
@@ -29,6 +37,7 @@ class EvolutionAdapter(val evolutions: List<Chain?>): RecyclerView.Adapter<Evolu
             }
         }
     }
+
     fun setOnClickListener(onClickListener: OnClickListener){
         this.onClickListener = onClickListener
     }

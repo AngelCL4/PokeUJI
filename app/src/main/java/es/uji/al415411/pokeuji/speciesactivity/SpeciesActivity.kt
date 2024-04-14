@@ -11,8 +11,8 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import es.uji.al415411.pokeuji.evolutionactivity.EvolutionActivity
-import es.uji.al415411.pokeuji.networkclasses.Specie
-import es.uji.al415411.pokeuji.networkclasses.Variety
+import es.uji.al415411.pokeuji.models.Specie
+import es.uji.al415411.pokeuji.models.Variety
 import es.uji.al415411.pokeuji.pokemonactivity.MainActivity
 
 class SpeciesActivity : AppCompatActivity(), SpeciesInterface {

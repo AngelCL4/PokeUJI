@@ -3,10 +3,8 @@ package es.uji.al415411.pokeuji.evolutionactivity
 import kotlinx.coroutines.Dispatchers
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import es.uji.al415411.pokeuji.networkclasses.Evolution
+import es.uji.al415411.pokeuji.models.Evolution
 import es.uji.al415411.pokeuji.networkclasses.PokemonRepository
-import es.uji.al415411.pokeuji.networkclasses.Specie
-import es.uji.al415411.pokeuji.speciesactivity.SpeciesInterface
 import kotlinx.coroutines.launch
 class EvolutionViewModel: ViewModel() {
     fun onBeginning(id: String) {
@@ -14,6 +12,7 @@ class EvolutionViewModel: ViewModel() {
             PokemonRepository.getEvolution(id)
                 .onSuccess {
                     evolution = it
+                    view?.setListener(it)
                 }
                 .onFailure { view?.showSearchError(it) }
 
@@ -33,7 +32,11 @@ class EvolutionViewModel: ViewModel() {
         set(value) {
             field = value
             if(value != null){
-
+                view?.showEvolution(value)
             }
         }
+
+    fun volverEvo() {
+        view?.firstListener(evolution!!.chain.species.name)
+    }
 }

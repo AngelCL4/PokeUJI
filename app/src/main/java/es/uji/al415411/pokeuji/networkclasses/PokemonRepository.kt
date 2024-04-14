@@ -2,6 +2,9 @@ package es.uji.al415411.pokeuji.networkclasses
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import es.uji.al415411.pokeuji.models.Evolution
+import es.uji.al415411.pokeuji.models.Pokemon
+import es.uji.al415411.pokeuji.models.Specie
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Retrofit

@@ -1,25 +1,19 @@
 package es.uji.al415411.pokeuji.pokemonactivity
 
-import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageView
-import es.uji.al415411.pokeuji.R
 import es.uji.al415411.pokeuji.databinding.ActivityMainBinding
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.DialogFragment
 import com.bumptech.glide.Glide
-import es.uji.al415411.pokeuji.networkclasses.Pokemon
-import android.app.FragmentManager
+import es.uji.al415411.pokeuji.models.Pokemon
 import android.content.Intent
 import android.graphics.Color
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
-import es.uji.al415411.pokeuji.networkclasses.Info
-import es.uji.al415411.pokeuji.networkclasses.Sprites
+import es.uji.al415411.pokeuji.models.Info
 import es.uji.al415411.pokeuji.speciesactivity.SpeciesActivity
 
 
