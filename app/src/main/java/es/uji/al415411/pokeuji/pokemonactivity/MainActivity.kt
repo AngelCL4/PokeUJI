@@ -20,24 +20,23 @@ import es.uji.al415411.pokeuji.speciesactivity.SpeciesActivity
 class MainActivity : AppCompatActivity(), PokemonInterface {
     lateinit var binding: ActivityMainBinding
     val viewModel: PokemonViewModel by viewModels()
-
     var listaSprites: Array<String?> = arrayOf()
     var spec: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         val bundle = intent.getStringExtra(MainActivity.POKEMON_VAR)
         if (bundle != null) {
             viewModel.onPokemonSearchRequested(bundle)
         }
-
+        else {
+            inicioVacio()
+        }
         binding.SearchButton.setOnClickListener {
             changeSearchColor(binding.SearchBar)
             viewModel.onPokemonSearchRequested(binding.SearchBar.text.toString())
         }
-
         binding.AbilityButton.setOnClickListener {
             viewModel.onAbilityDialog()
         }
@@ -47,11 +46,9 @@ class MainActivity : AppCompatActivity(), PokemonInterface {
         binding.imageView.setOnClickListener{
             MostrarDialogoSprites(listaSprites)
         }
-
         binding.SpeciesData.setOnClickListener{
             viewModel.speciesSwitch()
         }
-
     }
 
     override fun onResume(){
@@ -72,6 +69,7 @@ class MainActivity : AppCompatActivity(), PokemonInterface {
                 HeightData.text = (it.height / 10f).toString()+" m"
                 SpeciesData.text = it.species.name
                 spec = it.species.name
+                //Se añade a listaSprites todos los sprites del pokemon para pasarlos al dialog encargado de cambiar la imagen
                 listaSprites = arrayOf(it.sprites.back_default,it.sprites.back_female,it.sprites.back_shiny,it.sprites.back_shiny_female,it.sprites.front_default,it.sprites.front_female,it.sprites.front_shiny,it.sprites.front_shiny_female,
                     it.sprites.other.home.front_default, it.sprites.other.home.front_female, it.sprites.other.home.front_shiny, it.sprites.other.home.front_shiny_female,
                     it.sprites.other.officialartwork.front_default, it.sprites.other.officialartwork.front_shiny,
@@ -87,13 +85,9 @@ class MainActivity : AppCompatActivity(), PokemonInterface {
     fun changeSearchColor(editText: EditText){
         editText.addTextChangedListener(object: TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
             }
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
             }
-
             override fun afterTextChanged(s: Editable?) {
                 val color = Color.BLACK
                 editText.setTextColor(color)
@@ -217,8 +211,17 @@ class MainActivity : AppCompatActivity(), PokemonInterface {
 
     override fun showSpeciesView(species: Info) {
         val intent = Intent(this,SpeciesActivity::class.java)
-        intent.putExtra( SpeciesActivity.SPECIES_ID, species.name)
+        intent.putExtra(SpeciesActivity.SPECIES_ID, species.name)
         startActivity(intent)
+    }
+
+    fun inicioVacio(){
+        with(binding){
+            PokeName.text = "??????"
+            WeightData.text = "??? kg"
+            HeightData.text = "??? m"
+            SpeciesData.text = "??????"
+        }
     }
 
 }

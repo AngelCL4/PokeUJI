@@ -13,7 +13,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 object PokemonRepository {
     suspend fun getPokemon(id: String) = try {
         withContext(Dispatchers.IO) {
-            val pokemonResponse = api.getPokemon(id.lowercase())
+            val pokemonResponse = CachedAPI.getPokemon(id.lowercase())
             val abilities_list = ArrayList<String>()
             for(ability in pokemonResponse.abilities) {
                 abilities_list.add(ability.ability.name)
@@ -34,7 +34,7 @@ object PokemonRepository {
 
     suspend fun getSpecies(id: String) = try {
         withContext(Dispatchers.IO) {
-            val speciesResponse = api.getSpecies(id.lowercase())
+            val speciesResponse = CachedAPI.getSpecies(id.lowercase())
             val version_list = ArrayList<String>()
             val flavor_text_list = ArrayList<String>()
             for (version in speciesResponse.flavor_text_entries) {
@@ -57,7 +57,7 @@ object PokemonRepository {
 
     suspend fun getEvolution(id: String) = try {
         withContext(Dispatchers.IO) {
-            val evolutionResponse = api.getEvolution(id.lowercase())
+            val evolutionResponse = CachedAPI.getEvolution(id.lowercase())
             with(evolutionResponse) {
                 Result.success(Evolution(chain))
             }
@@ -67,14 +67,6 @@ object PokemonRepository {
         Result.failure(e)
     }
 
-    private val api: PokeApi
-    init {
-        val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
-        api = Retrofit.Builder()
-            .baseUrl("https://pokeapi.co/api/v2/")
-            .addConverterFactory(MoshiConverterFactory.create(moshi))
-            .build()
-            .create(PokeApi::class.java)
-    }
+
 
 }

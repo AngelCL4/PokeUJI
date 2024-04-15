@@ -23,7 +23,6 @@ class SpeciesActivity : AppCompatActivity(), SpeciesInterface {
         super.onCreate(savedInstanceState)
         binding = ActivitySpeciesBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         val bundle = intent.getStringExtra(SPECIES_ID)
         if (bundle != null) {
             viewModel.onBeginning(bundle)
@@ -31,12 +30,9 @@ class SpeciesActivity : AppCompatActivity(), SpeciesInterface {
                 PokeNameS.text = bundle
             }
         }
-
         binding.button.setOnClickListener{
             viewModel.evolutionSwitch()
         }
-
-
     }
 
     override fun showVersion(description: String)

@@ -12,15 +12,14 @@ import es.uji.al415411.pokeuji.R
 class RecyclerAdapter(val variety: List<Variety>): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>(){
     private var onClickListener: OnClickListener? = null
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        val arrow: ImageView = view.findViewById(R.id.DefaultArrow)
         val name: TextView = view.findViewById(R.id.VarietyName)
         val star: ImageView = view.findViewById(R.id.DefaultStar)
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.species_recycler, parent, false)
         return ViewHolder(view)
     }
-    override fun onBindViewHolder(holder: RecyclerAdapter.ViewHolder, pos: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, pos: Int) {
         with(variety[pos]) {
             holder.name.text = pokemon.name
             if(is_default == true) {
